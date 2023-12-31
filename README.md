@@ -1,8 +1,5 @@
 # Notes Cloud App
 
-![Flutter](https://img.shields.io/badge/Flutter-2.8.0-1389FD?logo=flutter)
-![Firebase](https://img.shields.io/badge/Firebase-9.0.0-FFCA28?logo=firebase)
-
 Notes Cloud App is a Flutter application that allows you to easily and securely take and manage your notes. The app uses Firebase for authentication and cloud data storage.
 
 ## Screenshots
