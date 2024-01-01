@@ -1,68 +1,62 @@
 # Notes Cloud App
 
-Notes Cloud App is a Flutter application that allows you to easily and securely take and manage your notes. The app uses Firebase for authentication and cloud data storage.
+Notes Cloud App es una aplicación Flutter que facilita la toma y gestión segura de notas. La aplicación utiliza Firebase para la autenticación y el almacenamiento en la nube.
 
-## Screenshots
+## Capturas de Pantalla
 
+![Captura de Pantalla 1](https://live.staticflickr.com/65535/53434943161_9d84da21aa_o.png)
+![Captura de Pantalla 2](https://live.staticflickr.com/65535/53434943166_aa63f7b794_o.png)
+![Captura de Pantalla 3](https://live.staticflickr.com/65535/53435095253_49d2eb752f_o.png)
+![Captura de Pantalla 4](https://live.staticflickr.com/65535/53434026262_36963146be_o.png)
+![Captura de Pantalla 5](https://live.staticflickr.com/65535/53435272569_a8c4444852_o.png)
 
+## Características
 
-## Features
+- **Autenticación de Usuario:** Iniciar sesión o registrarse.
+- **Gestión de Notas:** Crear, editar y eliminar notas.
+- **Favoritos:** Marcar notas como favoritas.
 
-- **User Authentication:** Users can log in with their account or register for a new one.
-- **Note Management:** Create, edit, and delete notes.
-- **Favorites:** Mark your notes as favorites.
-- **Reminder Functionality:** Set reminders for your notes.
+## Tecnologías Utilizadas
 
-## Technologies Used
+- **Flutter:** Desarrollo de la aplicación.
+- **Firebase Authentication:** Autenticación de usuarios.
+- **Cloud Firestore:** Almacenamiento y sincronización de datos en tiempo real.
 
-- **Flutter:** The application is developed using the Flutter framework.
-- **Firebase Authentication:** Handles user authentication.
-- **Cloud Firestore:** Stores and syncs data in real-time.
+## Estructura del Proyecto
 
-## Project Structure
+- **`lib/`**: Código fuente principal.
+  - **`pages/`**: Diferentes páginas de la aplicación.
+  - **`services/`**: Servicios para autenticación y Firestore.
+  - **`widgets/`**: Componentes de interfaz de usuario reutilizables.
 
-- **`lib/`**: Contains the main source code of the application.
-  - **`pages/`**: Contains the different pages of the app (Auth, Home, etc.).
-  - **`services/`**: Includes services for authentication and Firestore.
-  - **`widgets/`**: Reusable UI components used across the app.
+## Streaming de Datos con StreamBuilder
 
-## Getting Started
+Se utiliza `StreamBuilder` para manejar y actualizar en tiempo real los cambios en la interfaz de usuario basados en flujos de datos de Firestore. Por ejemplo, al mostrar las notas o sus actualizaciones de manera dinámica.
 
-1. **Clone the Repository:**
-    ```bash
-    git clone https://github.com/tu-usuario/notes-cloud-app.git
-    cd notes-cloud-app
-    ```
+```dart
+StreamBuilder(
+  stream: firestoreService.getNotesStream(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator();
+    } else if (snapshot.hasError) {
+      return Text('Error: ${snapshot.error}');
+    } else {
+      // Renderizar la interfaz de usuario basada en los datos del stream.
+      return YourCustomWidget(data: snapshot.data);
+    }
+  },
+)
+```
 
-2. **Install Dependencies:**
-    ```bash
-    flutter pub get
-    ```
+## Comprendiendo el Código
 
-3. **Run the Application:**
-    ```bash
-    flutter run
-    ```
+- **`main.dart`:** Punto de entrada, inicializa Firebase y ejecuta la aplicación.
+- **`pages/`:** Pantallas de la aplicación (autenticación, inicio, etc.).
+- **`services/`:** Servicios de autenticación y Firestore.
+- **`widgets/`:** Componentes de interfaz de usuario reutilizables.
 
-## Understanding the Code
-
-- **`main.dart`:** Entry point of the application, initializes Firebase and runs the app.
-- **`pages/`:** Contains the different screens/pages of the app (authentication, home, etc.).
-- **`services/`:** Includes authentication and Firestore services.
-- **`widgets/`:** Reusable UI components like dialogs and list items.
-- **`FirestoreService.dart`:** Manages interactions with Cloud Firestore.
-
-## Contributions
-
-Thank you for considering contributing to the project! If you would like to contribute, please follow these steps:
-
-1. Fork the Repository
-2. Create Your Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit Your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push Your Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## Contact
+## Contacto
 
 - Hernán Rodríguez Garnica
 - Email: hernanrg85@gmail.com
