@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:todo_firebase/keys.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -24,9 +25,9 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return android;
+        return androidOptions;
       case TargetPlatform.iOS:
-        return ios;
+        return iosOptions;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -49,20 +50,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBFrW8uZgcIMrOeV5huuYmw3fOw_3QJbbE',
-    appId: '1:89292857289:android:de71b927b4a583c51f1218',
-    messagingSenderId: '89292857289',
-    projectId: 'todofirebase-f1fed',
-    storageBucket: 'todofirebase-f1fed.appspot.com',
+  static const FirebaseOptions androidOptions = FirebaseOptions(
+    apiKey: FirebaseKeys.androidApiKey,
+    appId: FirebaseKeys.androidAppId,
+    messagingSenderId: FirebaseKeys.androidMessagingSenderId,
+    projectId: FirebaseKeys.androidProjectId,
+    storageBucket: FirebaseKeys.androidStorageBucket,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAcXWPrQx3sYXDYtgTyw4zl-Ws5K8grIJM',
-    appId: '1:89292857289:ios:c826c9f17eec2f321f1218',
-    messagingSenderId: '89292857289',
-    projectId: 'todofirebase-f1fed',
-    storageBucket: 'todofirebase-f1fed.appspot.com',
-    iosBundleId: 'com.example.todoFirebase',
+  static const FirebaseOptions iosOptions = FirebaseOptions(
+    apiKey: FirebaseKeys.iosApiKey,
+    appId: FirebaseKeys.iosAppId,
+    messagingSenderId: FirebaseKeys.iosMessagingSenderId,
+    projectId: FirebaseKeys.iosProjectId,
+    storageBucket: FirebaseKeys.iosStorageBucket,
+    iosBundleId: FirebaseKeys.iosBundleId,
   );
 }
